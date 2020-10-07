@@ -33,9 +33,27 @@ const config = {
   },
 };
 
+const map = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+  [1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1],
+  [0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0],
+  [0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
+  [1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+]
+
 const mapWidth = 15;
 const mapHeight = 15;
-const tileWidthHalf = 21;
+const tileWidthHalf = 20;
 const tileHeightHalf = 12;
 const centerX = (mapWidth / 2) * tileWidthHalf;
 const centerY = -100;
@@ -83,11 +101,11 @@ function generateMap() {
     4, tileHeightHalf,
   ]);
   for (var y = 0; y < mapHeight; y++) {
-    for (var x = 0; x < mapWidth; x++) {
+    for (var x = 0; x < map[y].length; x++) {
       const tx = (x - y) * tileWidthHalf;
       const ty = (x + y) * tileHeightHalf;
 
-      const block = (x % 2 === 0) ? 'block-059' : 'block-054';
+      const block = map[x][y] === 1 ? 'block-003' : 'block-152';
 
       const tile = this.add.sprite(tx, ty, 'isoblocks', block)
         .setInteractive(
